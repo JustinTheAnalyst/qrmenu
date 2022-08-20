@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get("products", function(Request $request){
+    $list = ProductModel::all();
+    return response()->json([ "data" => $list ]);
 });
